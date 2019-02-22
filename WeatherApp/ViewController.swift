@@ -20,7 +20,9 @@ class ViewController: UIViewController {
         print("here")
         let task = URLSession.shared.dataTask(with: myURL!){ (data,response,error) in
             print("?")
-
+            DispatchQueue.main.async {
+                
+            
                 if let unrappedData = data{
                     
                     do{
@@ -30,13 +32,14 @@ class ViewController: UIViewController {
                         let weather = jsonResult?["weather"] as? NSArray
                         let weatherItem = weather?[0] as? NSDictionary
                        self.toDisplay.text = weatherItem?["description"] as! String
-                        print("description \(self.descriptionItem)")
-                       
-
                     }
                     catch{
                         print("error")
                     }
+                }
+                        print("description \(self.descriptionItem)")
+            
+                
                 }
             
         }
